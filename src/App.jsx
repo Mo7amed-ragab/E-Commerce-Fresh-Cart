@@ -10,6 +10,11 @@ import Categories from "./Components/Categories/Categories";
 import Brands from "./Components/Brands/Brands";
 import Cart from "./Components/Cart/Cart";
 import SessionExpiredPopup from "./Components/SessionExpired/SessionExpiredPopup";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/effect-fade";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 const route = createBrowserRouter([
   {
@@ -17,7 +22,14 @@ const route = createBrowserRouter([
     element: <Layout />,
 
     children: [
-      { index: true, element: <Products /> },
+      {
+        index: true,
+        element: (
+          <SessionExpiredPopup>
+            <Products />
+          </SessionExpiredPopup>
+        ),
+      },
 
       {
         path: "products",
@@ -27,10 +39,6 @@ const route = createBrowserRouter([
           </SessionExpiredPopup>
         ),
       },
-
-      { path: "register", element: <Register /> },
-
-      { path: "login", element: <Login /> },
 
       {
         path: "categories",
@@ -59,16 +67,24 @@ const route = createBrowserRouter([
         ),
       },
 
+      { path: "register", element: <Register /> },
+
+      { path: "login", element: <Login /> },
+
       { path: "*", element: <NotFound /> },
     ],
   },
 ]);
 
+const reactQuery = new QueryClient();
+
 export default function App() {
   return (
     <>
       <AuthContext>
-        <RouterProvider router={route} />
+        <QueryClientProvider client={reactQuery}>
+          <RouterProvider router={route} />
+        </QueryClientProvider>
       </AuthContext>
 
       <ToastContainer style={{ marginTop: "80px" }} />
