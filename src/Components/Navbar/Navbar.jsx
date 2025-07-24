@@ -24,7 +24,7 @@ export default function Navbar() {
   return (
     <>
       <nav className="bg-emerald-400">
-        <div className="flex items-center justify-between p-3 mx-auto container">
+        <div className="flex items-center justify-between p-3 mx-auto container px-4">
           <div className="flex items-center gap-3">
             <Link to="">
               <img src={logo_navbar} alt="Fresh cart" />

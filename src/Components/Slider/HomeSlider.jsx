@@ -18,16 +18,36 @@ export default function HomeSlider() {
         className="mySwiper"
       >
         <SwiperSlide>
-          <img src={slideImage1} alt="img" className=" w-full" />
+          <img
+            src={slideImage1}
+            alt="img"
+            className=" w-full"
+            style={{ height: "400px" }}
+          />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={slideImage2} alt="img" className=" w-full" />
+          <img
+            src={slideImage2}
+            alt="img"
+            className=" w-full"
+            style={{ height: "400px" }}
+          />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={slideImage3} alt="img" className=" w-full" />
+          <img
+            src={slideImage3}
+            alt="img"
+            className=" w-full"
+            style={{ height: "400px" }}
+          />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={slideImage1} alt="img" className=" w-full" />
+          <img
+            src={slideImage1}
+            alt="img"
+            className=" w-full"
+            style={{ height: "400px" }}
+          />
         </SwiperSlide>
       </Swiper>
     </div>

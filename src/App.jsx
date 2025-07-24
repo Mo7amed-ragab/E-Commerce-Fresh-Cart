@@ -1,7 +1,9 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "react-query";
 import { ToastContainer } from "react-toastify";
 import Layout from "./Components/Layout/Layout";
 import AuthContext from "./Context/AuthContext";
+import CartContextProvider from "./Context/CartContext";
 import Login from "./Components/Login/Login";
 import Register from "./Components/Register/Register";
 import NotFound from "./Components/NotFound/NotFound";
@@ -9,12 +11,12 @@ import Products from "./Components/Products/Products";
 import Categories from "./Components/Categories/Categories";
 import Brands from "./Components/Brands/Brands";
 import Cart from "./Components/Cart/Cart";
+import ProductDetails from "./Components/Products/ProductDetails";
 import SessionExpiredPopup from "./Components/SessionExpired/SessionExpiredPopup";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/effect-fade";
-import { QueryClient, QueryClientProvider } from "react-query";
 
 const route = createBrowserRouter([
   {
@@ -36,6 +38,15 @@ const route = createBrowserRouter([
         element: (
           <SessionExpiredPopup>
             <Products />
+          </SessionExpiredPopup>
+        ),
+      },
+
+      {
+        path: "productDetails/:id",
+        element: (
+          <SessionExpiredPopup>
+            <ProductDetails />
           </SessionExpiredPopup>
         ),
       },
@@ -83,7 +94,9 @@ export default function App() {
     <>
       <AuthContext>
         <QueryClientProvider client={reactQuery}>
-          <RouterProvider router={route} />
+          <CartContextProvider>
+            <RouterProvider router={route} />
+          </CartContextProvider>
         </QueryClientProvider>
       </AuthContext>
 
