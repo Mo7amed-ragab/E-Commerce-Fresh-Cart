@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-.active{
-    padding-bottom: 13px;
-    border-bottom: 3px solid white;
+.active {
+  padding-bottom: 20px;
+  border-bottom: 3px solid white;
 }

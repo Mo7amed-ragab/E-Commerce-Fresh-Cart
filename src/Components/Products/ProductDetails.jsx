@@ -1,11 +1,24 @@
-import React from "react";
+import React, { useContext } from "react";
 import axios from "axios";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
+import { cartContext } from "../../Context/CartContext";
 import LoadingSpinner from "../CustomComponents/LoadingSpinner";
+import { toast } from "react-toastify";
 
 export default function ProductDetails() {
   const { id } = useParams();
+  const { addCart } = useContext(cartContext);
+
+  async function handelAddCart(id) {
+    const resMass = await addCart(id);
+
+    if (resMass) {
+      toast.success("Product added Successfully");
+    } else {
+      toast.error("Adding Product Error");
+    }
+  }
 
   function fetchProductDetails() {
     return axios.get(`https://ecommerce.routemisr.com/api/v1/products/${id}`);
@@ -48,7 +61,10 @@ export default function ProductDetails() {
           <p>{objData.description}</p>
           <h5>Category : {objData.category.name}</h5>
           <h5>Price : {objData.price}</h5>
-          <button className="btn btn-success border-white bg-emerald-400 w-full">
+          <button
+            onClick={() => handelAddCart(objData._id)}
+            className="btn btn-success border-white bg-emerald-400 w-full"
+          >
             + Add to Cart
           </button>
         </div>

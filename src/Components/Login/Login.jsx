@@ -2,13 +2,15 @@ import React, { useContext, useState } from "react";
 import axios from "axios";
 import * as yup from "yup";
 import { useFormik } from "formik";
+import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { ColorRing } from "react-loader-spinner";
-import { toast } from "react-toastify";
 import { authContext } from "../../Context/AuthContext";
+import { cartContext } from "../../Context/CartContext";
 
 export default function Login() {
   const { setToken } = useContext(authContext);
+  const { fetchUserCart } = useContext(cartContext);
   const navigate = useNavigate();
 
   const [isClicked, setIsClicked] = useState(false);
@@ -26,8 +28,9 @@ export default function Login() {
       .then(function (x) {
         toast.success("Welcome Back");
 
-        setToken(x.data.token);
         localStorage.setItem("token", x.data.token);
+        setToken(x.data.token);
+        fetchUserCart();
         setIsClicked(false);
         setTimeout(() => {
           navigate("/");

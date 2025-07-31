@@ -100,7 +100,7 @@ export default function App() {
         </QueryClientProvider>
       </AuthContext>
 
-      <ToastContainer style={{ marginTop: "80px" }} />
+      <ToastContainer />
     </>
   );
 }
