@@ -7,6 +7,7 @@ export default function CartContextProvider({ children }) {
   const [allCart, setAllCart] = useState(null);
   const [totalCart, setTotalCart] = useState(0);
   const [numOfCart, setNumOfCart] = useState(0);
+  const [CartId, setCartId] = useState(null);
 
   let headers = {
     token: localStorage.getItem("token"),
@@ -40,6 +41,8 @@ export default function CartContextProvider({ children }) {
         setAllCart(res.data.data.products);
         setTotalCart(res.data.data.totalCartPrice);
         setNumOfCart(res.data.numOfCartItems);
+
+        setCartId(res.data.data._id);
       })
       .catch((error) => {
         // If cart is empty or not found, reset state
@@ -86,10 +89,6 @@ export default function CartContextProvider({ children }) {
       });
   }
 
-  /**
-   * Clears all items from the user's cart.
-   * @returns {Promise<boolean>} - True if successful, false otherwise.
-   */
   async function clearUserCart() {
     return axios
       .delete(`${Baseurl}/api/v1/cart`, { headers })
@@ -106,6 +105,14 @@ export default function CartContextProvider({ children }) {
       });
   }
 
+  function ClearUI() {
+    // Clear UI with new cart data
+    setAllCart(null);
+    setTotalCart(0);
+    setNumOfCart(0);
+    setCartId(null);
+  }
+
   useEffect(() => {
     fetchUserCart();
   }, []);
@@ -120,7 +127,9 @@ export default function CartContextProvider({ children }) {
         fetchUserCart,
         fetchUpdateCount,
         deleteProduct,
-        clearUserCart, // Expose the new function
+        clearUserCart,
+        CartId,
+        ClearUI,
       }}
     >
       {children}

@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { cartContext } from "../../Context/CartContext";
 import { toast } from "react-toastify";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import { Link } from "react-router-dom";
 
 export default function Cart() {
   const {
@@ -265,6 +266,13 @@ export default function Cart() {
                     ))}
                   </tbody>
                 </table>
+              </div>
+              <div className="text-center py-4">
+                <Link to="/payment">
+                  <button className="bg-green-600 p-5 text-white font-bold py-3 rounded-lg hover:bg-green-700 transition-colors duration-300 whitespace-nowrap">
+                    Pay Your Product
+                  </button>
+                </Link>
               </div>
             </>
           ) : (

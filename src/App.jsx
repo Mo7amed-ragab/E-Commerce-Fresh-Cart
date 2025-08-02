@@ -17,6 +17,8 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/effect-fade";
+import Payment from "./Components/Payment/payment";
+import { Offline } from "react-detect-offline";
 
 const route = createBrowserRouter([
   {
@@ -78,6 +80,15 @@ const route = createBrowserRouter([
         ),
       },
 
+      {
+        path: "payment",
+        element: (
+          <SessionExpiredPopup>
+            <Payment />
+          </SessionExpiredPopup>
+        ),
+      },
+
       { path: "register", element: <Register /> },
 
       { path: "login", element: <Login /> },
@@ -99,6 +110,12 @@ export default function App() {
           </CartContextProvider>
         </QueryClientProvider>
       </AuthContext>
+
+      <Offline>
+        <div className="bg-black p-5 bottom-5 rounded-xl fixed top-0 left-5 text-center text-white">
+          <h1>You are offline</h1>
+        </div>
+      </Offline>
 
       <ToastContainer />
     </>
