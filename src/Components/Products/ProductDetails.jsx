@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { cartContext } from "../../Context/CartContext";
 import LoadingSpinner from "../CustomComponents/LoadingSpinner";
 import { toast } from "react-toastify";
+import { Helmet } from "react-helmet";
 
 export default function ProductDetails() {
   const { id } = useParams();
@@ -47,6 +48,15 @@ export default function ProductDetails() {
 
   return (
     <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <meta
+          name="description"
+          content="View and manage your personalized profile. Explore account settings and preferences."
+        />
+        <title>Product Details</title>
+      </Helmet>
+
       <div className="container mx-auto p-5 flex items-center justify-between">
         <div className="w-1/4">
           <img

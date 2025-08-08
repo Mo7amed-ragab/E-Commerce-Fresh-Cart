@@ -8,6 +8,8 @@ export default function CartContextProvider({ children }) {
   const [totalCart, setTotalCart] = useState(0);
   const [numOfCart, setNumOfCart] = useState(0);
   const [CartId, setCartId] = useState(null);
+  const [wishListNumber, setWishListNumber] = useState();
+  const [dataWishList, setDataWishList] = useState([]);
 
   let headers = {
     token: localStorage.getItem("token"),
@@ -113,6 +115,42 @@ export default function CartContextProvider({ children }) {
     setCartId(null);
   }
 
+  function addToWishList(productId) {
+    return axios.post(
+      `${Baseurl}/api/v1/wishlist`,
+      {
+        productId: productId,
+      },
+      {
+        headers,
+      }
+    );
+  }
+
+  async function getWishList() {
+    return axios
+      .get(`${Baseurl}/api/v1/wishlist`, {
+        headers,
+      })
+      .then((res) => {
+        if (res.data.data.length) {
+          let wishNum = res.data.data.length;
+          if (wishNum === 0) {
+            wishNum = "";
+          }
+          setWishListNumber(wishNum);
+        }
+        return res;
+      })
+      .catch((err) => err);
+  }
+
+  function deleteWishList(productId) {
+    return axios.delete(`${Baseurl}/api/v1/wishlist/${productId}`, {
+      headers,
+    });
+  }
+
   useEffect(() => {
     fetchUserCart();
   }, []);
@@ -130,6 +168,13 @@ export default function CartContextProvider({ children }) {
         clearUserCart,
         CartId,
         ClearUI,
+        wishListNumber,
+        setWishListNumber,
+        addToWishList,
+        getWishList,
+        deleteWishList,
+        dataWishList,
+        setDataWishList,
       }}
     >
       {children}

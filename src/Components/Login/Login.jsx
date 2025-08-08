@@ -7,9 +7,10 @@ import { useNavigate } from "react-router-dom";
 import { ColorRing } from "react-loader-spinner";
 import { authContext } from "../../Context/AuthContext";
 import { cartContext } from "../../Context/CartContext";
+import { Helmet } from "react-helmet";
 
 export default function Login() {
-  const { setToken } = useContext(authContext);
+  const { setToken, setUserData } = useContext(authContext);
   const { fetchUserCart } = useContext(cartContext);
   const navigate = useNavigate();
 
@@ -28,8 +29,11 @@ export default function Login() {
       .then(function (x) {
         toast.success("Welcome Back");
 
+        localStorage.setItem("userProfile", JSON.stringify(x.data.user));
         localStorage.setItem("token", x.data.token);
         setToken(x.data.token);
+        setUserData(x.data.user);
+
         fetchUserCart();
         setIsClicked(false);
         setTimeout(() => {
@@ -55,6 +59,15 @@ export default function Login() {
 
   return (
     <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <meta
+          name="description"
+          content="View and manage your personalized profile. Explore account settings and preferences."
+        />
+        <title>Login</title>
+      </Helmet>
+
       <div className="p-5">
         <h2 className="text-center p-3">Login Now :</h2>
 

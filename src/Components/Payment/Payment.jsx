@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { useFormik } from "formik";
 import axios from "axios";
 import { cartContext } from "../../Context/CartContext";
+import { Helmet } from "react-helmet";
 
 export default function Payment() {
   const { CartId, ClearUI } = useContext(cartContext);
@@ -69,12 +70,20 @@ export default function Payment() {
       phone: "",
       city: "",
     },
-    //     onSubmit: cacheOrder,
+    // onSubmit: cacheOrder,
     onSubmit: detectAndCall,
   });
 
   return (
     <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <meta
+          name="description"
+          content="View and manage your personalized profile. Explore account settings and preferences."
+        />
+        <title>Payment</title>
+      </Helmet>
       <div className="container mx-auto p-5">
         <form
           onSubmit={PaymentFormik.handleSubmit}

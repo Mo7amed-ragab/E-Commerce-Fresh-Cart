@@ -5,6 +5,7 @@ import { Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import LoadingSpinner from "../CustomComponents/LoadingSpinner";
 import UseAllCategories from "../CustomComponents/UseAllCategories";
+import { Helmet } from "react-helmet";
 
 export default function CategoriesSlider() {
   const { data, isError, isLoading } = UseAllCategories();
@@ -46,6 +47,14 @@ export default function CategoriesSlider() {
 
   return (
     <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <meta
+          name="description"
+          content="View and manage your personalized profile. Explore account settings and preferences."
+        />
+        <title>Categories</title>
+      </Helmet>
       <div>
         <h2 className="text-lg font-semibold mb-3">Shop Popular Categories</h2>
         <Swiper

@@ -3,6 +3,7 @@ import { cartContext } from "../../Context/CartContext";
 import { toast } from "react-toastify";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 export default function Cart() {
   const {
@@ -95,6 +96,14 @@ export default function Cart() {
 
   return (
     <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <meta
+          name="description"
+          content="View and manage your personalized profile. Explore account settings and preferences."
+        />
+        <title>Carts</title>
+      </Helmet>
       <div className="bg-gray-100 dark:bg-gray-900 min-h-screen py-8">
         <div className="container mx-auto px-4">
           {numOfCart > 0 ? (
