@@ -20,6 +20,10 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/effect-fade";
 import WishList from "./Components/WishList/WishList";
+import ResetPassword from "./Components/ResetPassword/ResetPassword";
+import ForgetPassword from "./Components/ForgetPassword/ForgetPassword";
+import Home from "./Components/Home/Home";
+import AllOrders from "./Components/AllOrders/AllOrders";
 // import { Offline } from "react-detect-offline";
 
 const route = createBrowserRouter([
@@ -29,10 +33,19 @@ const route = createBrowserRouter([
 
     children: [
       {
-        index: true,
+        index: "/",
         element: (
           <SessionExpiredPopup>
-            <Products />
+            <Home />
+          </SessionExpiredPopup>
+        ),
+      },
+
+      {
+        path: "home",
+        element: (
+          <SessionExpiredPopup>
+            <Home />
           </SessionExpiredPopup>
         ),
       },
@@ -74,6 +87,15 @@ const route = createBrowserRouter([
       },
 
       {
+        path: "allorders",
+        element: (
+          <SessionExpiredPopup>
+            <AllOrders />
+          </SessionExpiredPopup>
+        ),
+      },
+
+      {
         path: "cart",
         element: (
           <SessionExpiredPopup>
@@ -108,6 +130,17 @@ const route = createBrowserRouter([
           </SessionExpiredPopup>
         ),
       },
+
+      {
+        path: "resetpassword",
+        element: (
+          <SessionExpiredPopup>
+            <ResetPassword />
+          </SessionExpiredPopup>
+        ),
+      },
+
+      { path: "forgetpassword", element: <ForgetPassword /> },
 
       { path: "register", element: <Register /> },
 

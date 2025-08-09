@@ -40,6 +40,14 @@ export default function Navbar() {
                 <li>
                   <NavLink
                     className="text-gray-800 hover:text-white transition-colors"
+                    to="/home"
+                  >
+                    Home
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className="text-gray-800 hover:text-white transition-colors"
                     to="/products"
                   >
                     Products
@@ -59,6 +67,14 @@ export default function Navbar() {
                     to="/brands"
                   >
                     Brands
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className="text-gray-800 hover:text-white transition-colors"
+                    to="/allorders"
+                  >
+                    Orders
                   </NavLink>
                 </li>
               </ul>
@@ -102,7 +118,7 @@ export default function Navbar() {
                   <li>
                     <Link to="wishlist" className="relative">
                       <i className="fa-regular fa-heart text-xl hover:text-white"></i>
-                      {/* 2. Use wishListNumber for the badge */}
+                      {/* Use wishListNumber for the badge */}
                       {wishListNumber > 0 && (
                         <span className="absolute -top-2 -right-3 bg-red-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
                           {wishListNumber}

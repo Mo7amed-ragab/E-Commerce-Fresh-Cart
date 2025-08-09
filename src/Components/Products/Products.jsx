@@ -1,13 +1,11 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import axios from "axios";
-import { useQuery } from "react-query";
-import SimpleSlider from "../Slider/HomeSlider";
-import LoadingSpinner from "../CustomComponents/LoadingSpinner";
-import CategoriesSlider from "../CategoriesSlider/CategoriesSlider";
-import { Link } from "react-router-dom";
-import { toast } from "react-toastify";
-import { cartContext } from "../../Context/CartContext";
 import { Helmet } from "react-helmet";
+import { toast } from "react-toastify";
+import { useQuery } from "react-query";
+import { Link } from "react-router-dom";
+import { cartContext } from "../../Context/CartContext";
+import LoadingSpinner from "../CustomComponents/LoadingSpinner";
 
 export default function Products() {
   const { addCart, addToWishList, getWishList, deleteWishList } =
@@ -93,25 +91,17 @@ export default function Products() {
         <title>Products</title>
       </Helmet>
 
-      <div className="container mx-auto px-4">
-        <div className="mt-4 rounded-xl overflow-hidden">
-          <SimpleSlider />
-        </div>
-
-        <div className="my-8">
-          <CategoriesSlider />
-        </div>
-
-        {/* === PRODUCT GRID WRAPPER FOR PAGINATION LOADING === */}
+      <div className="container mx-auto p-4">
+        {/*  PRODUCT GRID WRAPPER FOR PAGINATION LOADING */}
         <div className="relative">
-          {/* --- Loading overlay for pagination --- */}
+          {/* Loading overlay for pagination */}
           {isFetching && (
             <div className="absolute inset-0 bg-white bg-opacity-75 flex items-center justify-center z-30 rounded-lg">
               <LoadingSpinner />
             </div>
           )}
 
-          {/* === PRODUCT GRID WITH NEW LAYOUT === */}
+          {/* PRODUCT GRID WITH NEW LAYOUT */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 pb-4">
             {data?.data.data.map((pro) => (
               <div
@@ -172,7 +162,7 @@ export default function Products() {
           </div>
         </div>
 
-        {/* --- Pagination Component --- */}
+        {/* Pagination Component */}
         <nav aria-label="Page navigation" className="flex justify-center my-8">
           <ul className="inline-flex items-center -space-x-px">
             <li>
