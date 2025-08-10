@@ -26,9 +26,9 @@ export default function Navbar() {
   }
 
   return (
-    <>
+    <div>
       <nav className="bg-emerald-400 sticky-top">
-        <div className="container mx-auto flex items-center justify-between p-3 px-4">
+        <div className="container mx-auto flex items-center justify-between p-3 px-5">
           {/* Left Side: Logo and Main Links */}
           <div className="flex items-center gap-4">
             <Link to="">
@@ -195,6 +195,6 @@ export default function Navbar() {
           </Button>
         </ModalFooter>
       </Modal>
-    </>
+    </div>
   );
 }

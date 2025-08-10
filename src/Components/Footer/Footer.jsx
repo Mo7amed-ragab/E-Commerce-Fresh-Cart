@@ -9,7 +9,7 @@ import googlePlay from "../../assets/images/googleplay-btn.svg";
 export default function Footer() {
   return (
     <div className="bg-gray-100 py-8 mt-10 font-sans">
-      <div className="container mx-auto">
+      <div className="container mx-auto px-3">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-2xl font-semibold text-gray-800">
             Get the FreshCart app

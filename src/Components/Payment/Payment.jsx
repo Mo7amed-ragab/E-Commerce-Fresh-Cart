@@ -3,10 +3,13 @@ import { useFormik } from "formik";
 import axios from "axios";
 import { cartContext } from "../../Context/CartContext";
 import { Helmet } from "react-helmet";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { toast } from "react-toastify"; // Import toast for notifications
 
 export default function Payment() {
-  const { CartId, ClearUI } = useContext(cartContext);
+  const { CartId } = useContext(cartContext);
   const [Online, setOnline] = useState(false);
+  const navigate = useNavigate(); // Initialize navigate
 
   let headers = {
     token: localStorage.getItem("token"),
@@ -31,11 +34,13 @@ export default function Payment() {
         headers,
       })
       .then((res) => {
-        console.log(res);
-        ClearUI();
+        // On success, show a notification and redirect
+        toast.success("Order placed successfully!");
+        navigate("/allorders"); // Redirect to the all orders page
       })
       .catch((error) => {
-        console.log(error);
+        toast.error("Failed to place order. Please try again.");
+        console.error("Cache order error:", error);
       });
   }
 
@@ -56,10 +61,10 @@ export default function Payment() {
         }
       )
       .then((res) => {
-        console.log(res);
         window.open(res.data.session.url, "_self");
       })
       .catch((error) => {
+        toast.error("Failed to initiate online payment.");
         console.error("Payment error:", error);
       });
   }
@@ -70,7 +75,6 @@ export default function Payment() {
       phone: "",
       city: "",
     },
-    // onSubmit: cacheOrder,
     onSubmit: detectAndCall,
   });
 
@@ -80,7 +84,7 @@ export default function Payment() {
         <meta charSet="utf-8" />
         <meta
           name="description"
-          content="View and manage your personalized profile. Explore account settings and preferences."
+          content="Complete your purchase by providing payment and shipping details."
         />
         <title>Payment</title>
       </Helmet>
@@ -184,7 +188,7 @@ export default function Payment() {
             <button
               onClick={() => setOnline(true)}
               type="submit"
-              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-4 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              className="text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-4 py-2.5 text-center dark:bg-green-500 dark:hover:bg-green-600 dark:focus:ring-green-800"
             >
               Online Order
             </button>

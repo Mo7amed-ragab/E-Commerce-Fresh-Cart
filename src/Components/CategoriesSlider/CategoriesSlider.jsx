@@ -55,7 +55,7 @@ export default function CategoriesSlider() {
         />
         <title>Categories</title>
       </Helmet>
-      <div>
+      <div className="container mx-auto px-4">
         <h2 className="text-lg font-semibold mb-3">Shop Popular Categories</h2>
         <Swiper
           // Responsive breakpoints

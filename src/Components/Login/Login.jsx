@@ -3,7 +3,7 @@ import axios from "axios";
 import * as yup from "yup";
 import { useFormik } from "formik";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ColorRing } from "react-loader-spinner";
 import { authContext } from "../../Context/AuthContext";
 import { cartContext } from "../../Context/CartContext";
@@ -73,7 +73,7 @@ export default function Login() {
 
         <form
           onSubmit={LoginFormik.handleSubmit}
-          className="max-w-md mx-auto border-blue-500 border-2 rounded-lg p-5"
+          className="max-w-md mx-auto border-emerald-500 border-2 rounded-lg p-5"
         >
           {/* Email Field */}
           <div className="w-full mb-5 group">
@@ -133,7 +133,7 @@ export default function Login() {
 
           <button
             type="submit"
-            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            className="text-white bg-emerald-600 hover:bg-emerald-800 focus:ring-4 focus:outline-none focus:ring-emerald-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-emerald-600 dark:hover:bg-emerald-700 dark:focus:ring-emerald-800"
           >
             {!isClicked ? (
               "Login"
@@ -149,6 +149,21 @@ export default function Login() {
               />
             )}
           </button>
+
+          <div className="pt-3">
+            <Link
+              className="fw-bold text-center text-emerald-600"
+              to="/forgetpassword"
+            >
+              Forgotten Password?
+            </Link>
+          </div>
+          <p className="text-muted mt-2">
+            I don't haven account
+            <Link className="fw-bold ps-2 text-emerald-600" to="/register">
+              Register
+            </Link>
+          </p>
         </form>
       </div>
     </>

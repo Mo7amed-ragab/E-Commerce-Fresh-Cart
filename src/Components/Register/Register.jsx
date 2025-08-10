@@ -3,7 +3,7 @@ import * as yup from "yup";
 import { useState } from "react";
 import { useFormik } from "formik";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ColorRing } from "react-loader-spinner";
 
 export default function Register() {
@@ -99,7 +99,7 @@ export default function Register() {
 
         <form
           onSubmit={RegisterFormik.handleSubmit}
-          className="max-w-md mx-auto border-blue-500 border-2 rounded-lg p-5"
+          className="max-w-md mx-auto border-emerald-500 border-2 rounded-lg p-5"
         >
           <div className="w-full mb-5 group">
             <label
@@ -115,7 +115,7 @@ export default function Register() {
               type="text"
               name="name"
               id="name"
-              className="block py-2.5 px-3 w-full text-sm text-gray-900 bg-transparent border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+              className="block py-2.5 px-3 w-full text-sm text-gray-900 bg-transparent border border-gray-300 rounded-lg focus:ring-emerald-500 focus:border-emerald-500"
               placeholder="Enter your name"
             />
             {RegisterFormik.errors.name && RegisterFormik.touched.name ? (
@@ -143,7 +143,7 @@ export default function Register() {
               type="email"
               name="email"
               id="email"
-              className="block py-2.5 px-3 w-full text-sm text-gray-900 bg-transparent border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+              className="block py-2.5 px-3 w-full text-sm text-gray-900 bg-transparent border border-gray-300 rounded-lg focus:ring-emerald-500 focus:border-emerald-500"
               placeholder="Enter your email"
             />
             {RegisterFormik.errors.email && RegisterFormik.touched.email ? (
@@ -171,7 +171,7 @@ export default function Register() {
               type="password"
               name="password"
               id="password"
-              className="block py-2.5 px-3 w-full text-sm text-gray-900 bg-transparent border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+              className="block py-2.5 px-3 w-full text-sm text-gray-900 bg-transparent border border-gray-300 rounded-lg focus:ring-emerald-500 focus:border-emerald-500"
               placeholder="Enter your password"
             />
             {RegisterFormik.errors.password &&
@@ -200,7 +200,7 @@ export default function Register() {
               type="password"
               name="rePassword"
               id="rePassword"
-              className="block py-2.5 px-3 w-full text-sm text-gray-900 bg-transparent border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+              className="block py-2.5 px-3 w-full text-sm text-gray-900 bg-transparent border border-gray-300 rounded-lg focus:ring-emerald-500 focus:border-emerald-500"
               placeholder="Confirm your password"
             />
             {RegisterFormik.errors.rePassword &&
@@ -229,7 +229,7 @@ export default function Register() {
               type="tel"
               name="phone"
               id="phone"
-              className="block py-2.5 px-3 w-full text-sm text-gray-900 bg-transparent border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+              className="block py-2.5 px-3 w-full text-sm text-gray-900 bg-transparent border border-gray-300 rounded-lg focus:ring-emerald-500 focus:border-emerald-500"
               placeholder="Enter your phone number"
             />
             {RegisterFormik.errors.phone && RegisterFormik.touched.phone ? (
@@ -244,7 +244,7 @@ export default function Register() {
 
           <button
             type="submit"
-            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            className="text-white bg-emerald-700 hover:bg-emerald-800 focus:ring-4 focus:outline-none focus:ring-emerald-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-emerald-600 dark:hover:bg-emerald-700 dark:focus:ring-emerald-800"
           >
             {!isClicked ? (
               "Register"
@@ -260,6 +260,12 @@ export default function Register() {
               />
             )}
           </button>
+          <p className="text-muted mt-2">
+            I have account{" "}
+            <Link className="fw-bold text-emerald-600" to="/login">
+              Login
+            </Link>
+          </p>
         </form>
       </div>
     </>

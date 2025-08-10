@@ -10,7 +10,7 @@ export default function UnifiedCard({
   return (
     <div
       className={`bg-white rounded-xl shadow-md p-4 flex flex-col items-center transition-transform hover:scale-105 border border-gray-100 ${className}`}
-      style={{ width: 200, minHeight: 260 }}
+      style={{ width: 200 }}
     >
       {image && (
         <img
