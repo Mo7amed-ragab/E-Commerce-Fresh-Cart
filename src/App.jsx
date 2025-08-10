@@ -9,7 +9,7 @@ import Register from "./Components/Register/Register";
 import NotFound from "./Components/NotFound/NotFound";
 import Products from "./Components/Products/Products";
 import Categories from "./Components/Categories/Categories";
-import Payment from "./Components/Payment/payment";
+import Payment from "./Components/Payment/Payment";
 import Profile from "./Components/Profile/Profile";
 import Brands from "./Components/Brands/Brands";
 import Cart from "./Components/Cart/Cart";
