@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import clockIcon from "../../assets/images/clock.svg";
 import giftIcon from "../../assets/images/gift.svg";
@@ -49,10 +48,13 @@ export default function InformationHome() {
               <h3 className="mb-3 text-lg font-semibold text-gray-800">
                 {feature.title}
               </h3>
-              <p className="text-gray-600 text-sm">
+              <p className="text-gray-700 text-sm leading-relaxed">
                 {feature.description}
                 {feature.title === "Easy Returns" && (
-                  <Link to="" className="ml-1 text-emerald-600 hover:underline">
+                  <Link
+                    to=""
+                    className="ml-1 text-emerald-700 underline hover:text-emerald-800 font-medium"
+                  >
                     policy
                   </Link>
                 )}

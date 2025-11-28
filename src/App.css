@@ -1,4 +1,11 @@
+/* Prevent layout shift during loading */
+body {
+  margin: 0;
+  padding: 0;
+}
+
 #root {
+  min-height: 100vh;
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;

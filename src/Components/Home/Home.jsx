@@ -1,4 +1,3 @@
-import React from "react";
 import { Helmet } from "react-helmet";
 import Products from "../Products/Products";
 import SimpleSlider from "../Slider/HomeSlider";

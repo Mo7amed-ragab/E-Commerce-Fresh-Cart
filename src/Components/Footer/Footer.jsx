@@ -1,4 +1,3 @@
-import React from "react";
 import american from "../../assets/images/american-express.svg";
 import masterCard from "../../assets/images/mastercard.svg";
 import paypal from "../../assets/images/paypal.svg";
@@ -14,7 +13,7 @@ export default function Footer() {
           <h2 className="text-2xl font-semibold text-gray-800">
             Get the FreshCart app
           </h2>
-          <p className="text-gray-500 mt-1 mb-6">
+          <p className="text-gray-700 mt-1 mb-6">
             We will send you a link, open it on your phone to download the app.
           </p>
 
@@ -67,7 +66,7 @@ export default function Footer() {
         </div>
 
         <div className="text-center mt-8">
-          <span className="text-lg text-gray-500">
+          <span className="text-lg text-gray-700">
             © 2025 FreshCart E-Commerce. All rights reserved.
           </span>
         </div>

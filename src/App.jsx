@@ -1,30 +1,47 @@
+import { lazy, Suspense } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ToastContainer } from "react-toastify";
-import Layout from "./Components/Layout/Layout";
 import AuthContext from "./Context/AuthContext";
 import CartContextProvider from "./Context/CartContext";
-import Login from "./Components/Login/Login";
-import Register from "./Components/Register/Register";
-import NotFound from "./Components/NotFound/NotFound";
-import Products from "./Components/Products/Products";
-import Categories from "./Components/Categories/Categories";
-import Payment from "./Components/Payment/Payment";
-import Profile from "./Components/Profile/Profile";
-import Brands from "./Components/Brands/Brands";
-import Cart from "./Components/Cart/Cart";
-import ProductDetails from "./Components/Products/ProductDetails";
-import SessionExpiredPopup from "./Components/SessionExpired/SessionExpiredPopup";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/effect-fade";
-import WishList from "./Components/WishList/WishList";
-import ResetPassword from "./Components/ResetPassword/ResetPassword";
-import ForgetPassword from "./Components/ForgetPassword/ForgetPassword";
-import Home from "./Components/Home/Home";
-import AllOrders from "./Components/AllOrders/AllOrders";
-// import { Offline } from "react-detect-offline";
+
+// Eager load critical components
+import Layout from "./Components/Layout/Layout";
+import SessionExpiredPopup from "./Components/SessionExpired/SessionExpiredPopup";
+
+// Lazy load all other components
+const Home = lazy(() => import("./Components/Home/Home"));
+const Login = lazy(() => import("./Components/Login/Login"));
+const Register = lazy(() => import("./Components/Register/Register"));
+const NotFound = lazy(() => import("./Components/NotFound/NotFound"));
+const Products = lazy(() => import("./Components/Products/Products"));
+const Categories = lazy(() => import("./Components/Categories/Categories"));
+const Payment = lazy(() => import("./Components/Payment/Payment"));
+const Profile = lazy(() => import("./Components/Profile/Profile"));
+const Brands = lazy(() => import("./Components/Brands/Brands"));
+const Cart = lazy(() => import("./Components/Cart/Cart"));
+const ProductDetails = lazy(() =>
+  import("./Components/Products/ProductDetails")
+);
+const WishList = lazy(() => import("./Components/WishList/WishList"));
+const ResetPassword = lazy(() =>
+  import("./Components/ResetPassword/ResetPassword")
+);
+const ForgetPassword = lazy(() =>
+  import("./Components/ForgetPassword/ForgetPassword")
+);
+const AllOrders = lazy(() => import("./Components/AllOrders/AllOrders"));
+
+// Loading component
+const LoadingFallback = () => (
+  <div className="flex items-center justify-center min-h-screen">
+    <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-emerald-500"></div>
+  </div>
+);
 
 const route = createBrowserRouter([
   {
@@ -35,118 +52,170 @@ const route = createBrowserRouter([
       {
         index: "/",
         element: (
-          <SessionExpiredPopup>
-            <Home />
-          </SessionExpiredPopup>
+          <Suspense fallback={<LoadingFallback />}>
+            <SessionExpiredPopup>
+              <Home />
+            </SessionExpiredPopup>
+          </Suspense>
         ),
       },
 
       {
         path: "home",
         element: (
-          <SessionExpiredPopup>
-            <Home />
-          </SessionExpiredPopup>
+          <Suspense fallback={<LoadingFallback />}>
+            <SessionExpiredPopup>
+              <Home />
+            </SessionExpiredPopup>
+          </Suspense>
         ),
       },
 
       {
         path: "products",
         element: (
-          <SessionExpiredPopup>
-            <Products />
-          </SessionExpiredPopup>
+          <Suspense fallback={<LoadingFallback />}>
+            <SessionExpiredPopup>
+              <Products />
+            </SessionExpiredPopup>
+          </Suspense>
         ),
       },
 
       {
         path: "productDetails/:id",
         element: (
-          <SessionExpiredPopup>
-            <ProductDetails />
-          </SessionExpiredPopup>
+          <Suspense fallback={<LoadingFallback />}>
+            <SessionExpiredPopup>
+              <ProductDetails />
+            </SessionExpiredPopup>
+          </Suspense>
         ),
       },
 
       {
         path: "categories",
         element: (
-          <SessionExpiredPopup>
-            <Categories />
-          </SessionExpiredPopup>
+          <Suspense fallback={<LoadingFallback />}>
+            <SessionExpiredPopup>
+              <Categories />
+            </SessionExpiredPopup>
+          </Suspense>
         ),
       },
 
       {
         path: "brands",
         element: (
-          <SessionExpiredPopup>
-            <Brands />
-          </SessionExpiredPopup>
+          <Suspense fallback={<LoadingFallback />}>
+            <SessionExpiredPopup>
+              <Brands />
+            </SessionExpiredPopup>
+          </Suspense>
         ),
       },
 
       {
         path: "allorders",
         element: (
-          <SessionExpiredPopup>
-            <AllOrders />
-          </SessionExpiredPopup>
+          <Suspense fallback={<LoadingFallback />}>
+            <SessionExpiredPopup>
+              <AllOrders />
+            </SessionExpiredPopup>
+          </Suspense>
         ),
       },
 
       {
         path: "cart",
         element: (
-          <SessionExpiredPopup>
-            <Cart />
-          </SessionExpiredPopup>
+          <Suspense fallback={<LoadingFallback />}>
+            <SessionExpiredPopup>
+              <Cart />
+            </SessionExpiredPopup>
+          </Suspense>
         ),
       },
 
       {
         path: "wishlist",
         element: (
-          <SessionExpiredPopup>
-            <WishList />
-          </SessionExpiredPopup>
+          <Suspense fallback={<LoadingFallback />}>
+            <SessionExpiredPopup>
+              <WishList />
+            </SessionExpiredPopup>
+          </Suspense>
         ),
       },
 
       {
         path: "profile",
         element: (
-          <SessionExpiredPopup>
-            <Profile />
-          </SessionExpiredPopup>
+          <Suspense fallback={<LoadingFallback />}>
+            <SessionExpiredPopup>
+              <Profile />
+            </SessionExpiredPopup>
+          </Suspense>
         ),
       },
 
       {
         path: "payment",
         element: (
-          <SessionExpiredPopup>
-            <Payment />
-          </SessionExpiredPopup>
+          <Suspense fallback={<LoadingFallback />}>
+            <SessionExpiredPopup>
+              <Payment />
+            </SessionExpiredPopup>
+          </Suspense>
         ),
       },
 
       {
         path: "resetpassword",
         element: (
-          <SessionExpiredPopup>
-            <ResetPassword />
-          </SessionExpiredPopup>
+          <Suspense fallback={<LoadingFallback />}>
+            <SessionExpiredPopup>
+              <ResetPassword />
+            </SessionExpiredPopup>
+          </Suspense>
         ),
       },
 
-      { path: "forgetpassword", element: <ForgetPassword /> },
+      {
+        path: "forgetpassword",
+        element: (
+          <Suspense fallback={<LoadingFallback />}>
+            <ForgetPassword />
+          </Suspense>
+        ),
+      },
 
-      { path: "register", element: <Register /> },
+      {
+        path: "register",
+        element: (
+          <Suspense fallback={<LoadingFallback />}>
+            <Register />
+          </Suspense>
+        ),
+      },
 
-      { path: "login", element: <Login /> },
+      {
+        path: "login",
+        element: (
+          <Suspense fallback={<LoadingFallback />}>
+            <Login />
+          </Suspense>
+        ),
+      },
 
-      { path: "*", element: <NotFound /> },
+      {
+        path: "*",
+        element: (
+          <Suspense fallback={<LoadingFallback />}>
+            <NotFound />
+          </Suspense>
+        ),
+      },
     ],
   },
 ]);

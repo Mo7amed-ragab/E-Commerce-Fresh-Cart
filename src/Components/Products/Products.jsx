@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import axios from "axios";
 import { Helmet } from "react-helmet";
 import { toast } from "react-toastify";
@@ -40,16 +40,12 @@ export default function Products() {
   );
 
   // Query for fetching the wishlist
-  const { data: wishlistData, refetch: refetchWishlist } = useQuery(
-    "wishlist",
-    getWishList,
-    {
-      onSuccess: (data) => {
-        const ids = new Set(data?.data?.data.map((item) => item._id));
-        setWishlistIds(ids);
-      },
-    }
-  );
+  const { refetch: refetchWishlist } = useQuery("wishlist", getWishList, {
+    onSuccess: (data) => {
+      const ids = new Set(data?.data?.data.map((item) => item._id));
+      setWishlistIds(ids);
+    },
+  });
 
   // Function to toggle a product's wishlist status
   async function handleToggleWishlist(productId) {
@@ -115,7 +111,7 @@ export default function Products() {
                       alt={pro.title}
                       className="w-full h-40 object-contain mb-2"
                     />
-                    <span className="text-emerald-600 font-medium text-xs">
+                    <span className="text-emerald-700 font-semibold text-sm">
                       {pro.category.name}
                     </span>
                     <h3
@@ -129,7 +125,7 @@ export default function Products() {
                     <span className="text-gray-900 font-bold text-base">
                       {pro.price} EGP
                     </span>
-                    <span className="text-yellow-500 font-bold text-sm flex items-center">
+                    <span className="text-yellow-600 font-bold text-sm flex items-center">
                       <i className="fa-solid fa-star text-xs mr-1"></i>
                       {pro.ratingsAverage}
                     </span>

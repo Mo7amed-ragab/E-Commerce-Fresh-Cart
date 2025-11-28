@@ -1,5 +1,6 @@
 import axios from "axios";
-import React, { createContext, useEffect, useState } from "react";
+import PropTypes from "prop-types";
+import { createContext, useEffect, useState } from "react";
 
 export const cartContext = createContext();
 
@@ -11,9 +12,10 @@ export default function CartContextProvider({ children }) {
   const [wishListNumber, setWishListNumber] = useState();
   const [dataWishList, setDataWishList] = useState([]);
 
-  let headers = {
+  // Function to get fresh headers with current token
+  const getHeaders = () => ({
     token: localStorage.getItem("token"),
-  };
+  });
 
   let Baseurl = "https://ecommerce.routemisr.com";
 
@@ -24,9 +26,9 @@ export default function CartContextProvider({ children }) {
         {
           productId: productId,
         },
-        { headers }
+        { headers: getHeaders() }
       )
-      .then((res) => {
+      .then(() => {
         fetchUserCart();
         return true;
       })
@@ -38,7 +40,7 @@ export default function CartContextProvider({ children }) {
 
   function fetchUserCart() {
     axios
-      .get(`${Baseurl}/api/v1/cart`, { headers })
+      .get(`${Baseurl}/api/v1/cart`, { headers: getHeaders() })
       .then((res) => {
         setAllCart(res.data.data.products);
         setTotalCart(res.data.data.totalCartPrice);
@@ -62,7 +64,7 @@ export default function CartContextProvider({ children }) {
       .put(
         `${Baseurl}/api/v1/cart/${productId}`,
         { count: newCount },
-        { headers }
+        { headers: getHeaders() }
       )
       .then((res) => {
         setAllCart(res.data.data.products);
@@ -77,7 +79,7 @@ export default function CartContextProvider({ children }) {
   async function deleteProduct(productId) {
     return axios
       .delete(`${Baseurl}/api/v1/cart/${productId}`, {
-        headers,
+        headers: getHeaders(),
       })
       .then((res) => {
         setAllCart(res.data.data.products);
@@ -93,8 +95,8 @@ export default function CartContextProvider({ children }) {
 
   async function clearUserCart() {
     return axios
-      .delete(`${Baseurl}/api/v1/cart`, { headers })
-      .then((res) => {
+      .delete(`${Baseurl}/api/v1/cart`, { headers: getHeaders() })
+      .then(() => {
         // Reset cart state after successful clearing
         setAllCart([]);
         setTotalCart(0);
@@ -122,7 +124,7 @@ export default function CartContextProvider({ children }) {
         productId: productId,
       },
       {
-        headers,
+        headers: getHeaders(),
       }
     );
   }
@@ -130,7 +132,7 @@ export default function CartContextProvider({ children }) {
   async function getWishList() {
     return axios
       .get(`${Baseurl}/api/v1/wishlist`, {
-        headers,
+        headers: getHeaders(),
       })
       .then((res) => {
         if (res.data.data.length) {
@@ -147,7 +149,7 @@ export default function CartContextProvider({ children }) {
 
   function deleteWishList(productId) {
     return axios.delete(`${Baseurl}/api/v1/wishlist/${productId}`, {
-      headers,
+      headers: getHeaders(),
     });
   }
 
@@ -181,3 +183,7 @@ export default function CartContextProvider({ children }) {
     </cartContext.Provider>
   );
 }
+
+CartContextProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+};

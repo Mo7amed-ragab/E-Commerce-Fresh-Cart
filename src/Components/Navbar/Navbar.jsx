@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import { authContext } from "../../Context/AuthContext";
@@ -72,7 +72,7 @@ export default function Navbar() {
                 <li>
                   <NavLink
                     className="text-gray-800 hover:text-white transition-colors"
-                    to="/allorders"
+                    to="/allOrders"
                   >
                     Orders
                   </NavLink>
@@ -116,7 +116,11 @@ export default function Navbar() {
               {token ? (
                 <>
                   <li>
-                    <Link to="wishlist" className="relative">
+                    <Link
+                      to="wishlist"
+                      className="relative"
+                      aria-label="View wishlist"
+                    >
                       <i className="fa-regular fa-heart text-xl hover:text-white"></i>
                       {/* Use wishListNumber for the badge */}
                       {wishListNumber > 0 && (
@@ -127,7 +131,11 @@ export default function Navbar() {
                     </Link>
                   </li>
                   <li>
-                    <Link to="/cart" className="relative">
+                    <Link
+                      to="/cart"
+                      className="relative"
+                      aria-label="View shopping cart"
+                    >
                       <i className="fa-solid fa-cart-shopping text-xl hover:text-white"></i>
                       {numOfCart > 0 && (
                         <span className="absolute -top-2 -right-3 bg-red-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
@@ -137,7 +145,11 @@ export default function Navbar() {
                     </Link>
                   </li>
                   <li>
-                    <Link to="profile" className="relative">
+                    <Link
+                      to="profile"
+                      className="relative"
+                      aria-label="View profile"
+                    >
                       <i className="fa-regular fa-user text-xl hover:text-white"></i>
                     </Link>
                   </li>

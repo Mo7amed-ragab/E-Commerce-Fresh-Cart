@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import axios from "axios";
 import * as yup from "yup";
 import { useFormik } from "formik";
@@ -24,28 +24,33 @@ export default function Login() {
   async function loginUser(values) {
     setIsClicked(true);
 
-    axios
-      .post("https://ecommerce.routemisr.com/api/v1/auth/signin", values)
-      .then(function (x) {
-        toast.success("Welcome Back");
+    try {
+      const response = await axios.post(
+        "https://ecommerce.routemisr.com/api/v1/auth/signin",
+        values
+      );
 
-        localStorage.setItem("userProfile", JSON.stringify(x.data.user));
-        localStorage.setItem("token", x.data.token);
-        setToken(x.data.token);
-        setUserData(x.data.user);
+      // Save user data first
+      localStorage.setItem("userProfile", JSON.stringify(response.data.user));
+      localStorage.setItem("token", response.data.token);
+      setToken(response.data.token);
+      setUserData(response.data.user);
 
-        fetchUserCart();
-        setIsClicked(false);
-        setTimeout(() => {
-          navigate("/");
-        }, 2000);
-      })
-      .catch(function (x) {
-        toast.error(
-          x.response?.data?.message || "An unexpected error occurred."
-        );
-        setIsClicked(false);
-      });
+      // Wait for cart to load before showing success
+      await fetchUserCart();
+
+      toast.success("Welcome Back");
+
+      // Navigate immediately after everything is ready
+      setTimeout(() => {
+        navigate("/");
+      }, 500);
+    } catch (error) {
+      toast.error(
+        error.response?.data?.message || "An unexpected error occurred."
+      );
+      setIsClicked(false);
+    }
   }
 
   const LoginFormik = useFormik({
@@ -133,7 +138,8 @@ export default function Login() {
 
           <button
             type="submit"
-            className="text-white bg-emerald-600 hover:bg-emerald-800 focus:ring-4 focus:outline-none focus:ring-emerald-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-emerald-600 dark:hover:bg-emerald-700 dark:focus:ring-emerald-800"
+            disabled={isClicked}
+            className="text-white bg-emerald-600 hover:bg-emerald-800 focus:ring-4 focus:outline-none focus:ring-emerald-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-emerald-600 dark:hover:bg-emerald-700 dark:focus:ring-emerald-800 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {!isClicked ? (
               "Login"
@@ -159,7 +165,7 @@ export default function Login() {
             </Link>
           </div>
           <p className="text-muted mt-2">
-            I don't haven account
+            I don&apos;t haven account
             <Link className="fw-bold ps-2 text-emerald-600" to="/register">
               Register
             </Link>

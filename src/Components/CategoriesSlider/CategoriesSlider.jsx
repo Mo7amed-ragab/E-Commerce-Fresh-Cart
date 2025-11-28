@@ -1,4 +1,3 @@
-import React from "react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Autoplay } from "swiper/modules";
@@ -88,7 +87,7 @@ export default function CategoriesSlider() {
                 alt={category.name}
                 className="w-full h-48 object-cover rounded-md"
               />
-              <h5 className="font-semibold text-sm mt-2">{category.name}</h5>
+              <h3 className="font-semibold text-sm mt-2">{category.name}</h3>
             </SwiperSlide>
           ))}
         </Swiper>

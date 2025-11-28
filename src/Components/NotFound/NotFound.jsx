@@ -1,4 +1,3 @@
-import React from "react";
 import notFound from "../../assets/images/error.svg";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
@@ -26,7 +25,7 @@ export default function NotFound() {
         <h3 className="text-3xl font-bold text-gray-800 mt-8 mb-2">
           Page Not Found!
         </h3>
-        <p className="text-lg text-gray-500 mb-6">
+        <p className="text-lg text-gray-700 mb-6">
           The page you were looking for could not be found.
         </p>
         <div className="mt-2">
