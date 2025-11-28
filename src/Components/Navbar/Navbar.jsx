@@ -90,6 +90,7 @@ export default function Navbar() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-white"
+                aria-label="Visit our Facebook page"
               >
                 <i className="fa-brands fa-facebook"></i>
               </a>
@@ -98,6 +99,7 @@ export default function Navbar() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-white"
+                aria-label="Visit our LinkedIn page"
               >
                 <i className="fa-brands fa-linkedin"></i>
               </a>
@@ -106,6 +108,7 @@ export default function Navbar() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-white"
+                aria-label="Visit our Twitter page"
               >
                 <i className="fa-brands fa-twitter"></i>
               </a>
