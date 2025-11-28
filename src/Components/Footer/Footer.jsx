@@ -26,7 +26,7 @@ export default function Footer() {
             />
             <button
               type="submit"
-              className="bg-green-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-green-700 transition-colors duration-300 whitespace-nowrap"
+              className="bg-green-700 text-white font-bold py-3 px-6 rounded-lg hover:bg-green-800 transition-colors duration-300 whitespace-nowrap"
             >
               Share App Link
             </button>
@@ -39,10 +39,34 @@ export default function Footer() {
           <div className="flex items-center space-x-4">
             <span className="text-gray-600 font-medium">Payment Partners</span>
             <div className="flex items-center space-x-2">
-              <img src={american} className="h-6" alt="American Express" />
-              <img src={masterCard} className="h-6" alt="MasterCard" />
-              <img src={paypal} className="h-6" alt="PayPal" />
-              <img src={visa} className="h-6" alt="Visa" />
+              <img
+                src={american}
+                className="h-6"
+                alt="American Express"
+                width="34"
+                height="28"
+              />
+              <img
+                src={masterCard}
+                className="h-6"
+                alt="MasterCard"
+                width="29"
+                height="28"
+              />
+              <img
+                src={paypal}
+                className="h-6"
+                alt="PayPal"
+                width="40"
+                height="28"
+              />
+              <img
+                src={visa}
+                className="h-6"
+                alt="Visa"
+                width="40"
+                height="28"
+              />
             </div>
           </div>
 
@@ -52,13 +76,21 @@ export default function Footer() {
             </span>
             <div className="flex items-center space-x-2">
               <a href="#" aria-label="Download on the App Store">
-                <img src={appStore} className="h-10" alt="App Store button" />
+                <img
+                  src={appStore}
+                  className="h-10"
+                  alt="App Store button"
+                  width="169"
+                  height="50"
+                />
               </a>
               <a href="#" aria-label="Get it on Google Play">
                 <img
                   src={googlePlay}
                   className="h-10"
                   alt="Google Play button"
+                  width="169"
+                  height="50"
                 />
               </a>
             </div>

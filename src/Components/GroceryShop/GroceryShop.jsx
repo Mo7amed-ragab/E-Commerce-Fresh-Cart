@@ -1,4 +1,3 @@
-import React from "react";
 import storeGraphics from "../../assets/images/store-graphics.svg";
 
 export default function GroceryShop() {
@@ -24,6 +23,8 @@ export default function GroceryShop() {
                 src={storeGraphics}
                 alt="storeGraphics"
                 className="img-fluid"
+                width="512"
+                height="160"
               />
             </div>
           </div>

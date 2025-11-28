@@ -1,5 +1,5 @@
-import React from "react";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 
@@ -9,11 +9,11 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 // --- FIXED: Corrected the image import paths ---
-import imgSlider1 from "../../assets/images/slider-image-1.jpeg";
-import imgSlider2 from "../../assets/images/slider-image-2.jpeg";
-import imgSlider3 from "../../assets/images/slider-image-3.jpeg";
-import imgSlider4 from "../../assets/images/ad-banner-1.png";
-import imgSlider5 from "../../assets/images/ad-banner-2.png";
+import imgSlider1 from "../../assets/images/slider-image-1.webp";
+import imgSlider2 from "../../assets/images/slider-image-2.webp";
+import imgSlider3 from "../../assets/images/slider-image-3.webp";
+import imgSlider4 from "../../assets/images/ad-banner-1.webp";
+import imgSlider5 from "../../assets/images/ad-banner-2.webp";
 
 // Reusable Slide Component
 const Slide = ({ image, title, description, offer, price, link }) => (
@@ -43,7 +43,7 @@ const Slide = ({ image, title, description, offer, price, link }) => (
       </div>
       <Link
         to={link}
-        className="bg-teal-500 text-white font-bold py-3 px-6 rounded-lg hover:bg-teal-600 transition-colors duration-300 self-start inline-flex items-center"
+        className="bg-teal-700 text-white font-bold py-3 px-6 rounded-lg hover:bg-teal-800 transition-colors duration-300 self-start inline-flex items-center"
       >
         Shop Deals Now
         <svg
@@ -62,6 +62,15 @@ const Slide = ({ image, title, description, offer, price, link }) => (
     </div>
   </div>
 );
+
+Slide.propTypes = {
+  image: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  offer: PropTypes.string,
+  price: PropTypes.string,
+  link: PropTypes.string.isRequired,
+};
 
 // Reusable Ad Banner Component
 const AdBanner = ({ image, title, subtitle, code, link }) => (
@@ -94,6 +103,14 @@ const AdBanner = ({ image, title, subtitle, code, link }) => (
     </div>
   </div>
 );
+
+AdBanner.propTypes = {
+  image: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  subtitle: PropTypes.string.isRequired,
+  code: PropTypes.string,
+  link: PropTypes.string.isRequired,
+};
 
 export default function HomeSlider() {
   return (

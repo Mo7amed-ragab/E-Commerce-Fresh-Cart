@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import { useContext, useState } from "react";
 import axios from "axios";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
@@ -37,16 +37,12 @@ export default function ProductDetails() {
   );
 
   // Fetch wishlist and check if the current product is in it
-  const { data: wishlistData, refetch: refetchWishlist } = useQuery(
-    "wishlist",
-    getWishList,
-    {
-      onSuccess: (data) => {
-        const ids = new Set(data?.data?.data.map((item) => item._id));
-        setIsWishlisted(ids.has(id));
-      },
-    }
-  );
+  const { refetch: refetchWishlist } = useQuery("wishlist", getWishList, {
+    onSuccess: (data) => {
+      const ids = new Set(data?.data?.data.map((item) => item._id));
+      setIsWishlisted(ids.has(id));
+    },
+  });
 
   // Function to toggle wishlist status
   async function handleToggleWishlist(productId) {
@@ -124,7 +120,7 @@ export default function ProductDetails() {
                 <button
                   onClick={() => handleAddCart(product._id)}
                   disabled={isAddingToCart}
-                  className="flex-grow bg-teal-500 text-white font-bold py-3 px-6 rounded-lg hover:bg-teal-600 transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+                  className="flex-grow bg-teal-700 text-white font-bold py-3 px-6 rounded-lg hover:bg-teal-800 transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
                 >
                   <i className="fa-solid fa-cart-plus mr-2"></i>
                   {isAddingToCart ? "Adding..." : "Add to Cart"}

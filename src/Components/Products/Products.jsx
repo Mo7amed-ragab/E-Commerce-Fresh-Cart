@@ -125,8 +125,8 @@ export default function Products() {
                     <span className="text-gray-900 font-bold text-base">
                       {pro.price} EGP
                     </span>
-                    <span className="text-yellow-600 font-bold text-sm flex items-center">
-                      <i className="fa-solid fa-star text-xs mr-1"></i>
+                    <span className="text-gray-700 font-bold text-sm flex items-center">
+                      <i className="fa-solid fa-star text-yellow-500 text-xs mr-1"></i>
                       {pro.ratingsAverage}
                     </span>
                   </div>
@@ -135,7 +135,7 @@ export default function Products() {
                 <div className="flex items-center gap-2 mt-3">
                   <button
                     onClick={() => handleAddCart(pro._id)}
-                    className="flex-grow bg-emerald-500 hover:bg-emerald-600 text-white text-sm font-bold py-2 px-3 rounded-md transition-colors"
+                    className="flex-grow bg-emerald-700 hover:bg-emerald-700 text-white text-sm font-bold py-2 px-3 rounded-md transition-colors"
                   >
                     Add to Cart
                   </button>
